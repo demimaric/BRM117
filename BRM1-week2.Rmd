@@ -34,14 +34,14 @@ Continue with the data file of week 1
 Test whether financial satisfaction `Q50` is lower than 6, and 
 report the $t$-value and $p$-value. 
 ```{r}
-# write your code here
+# t.test(df$Q50)
 ```
 How would you label this variable measuring satisfaction? **Likert, semantic difference scale, paired comparison, rank order, continuous rating scale, or Stapel.** 
 
 ## 2. Chisquare $X^2$ test
 Analyze dependency between emancipation `Q31` and education recoded `Q276R`. Report the $X^2$ (=chisquare value), the p-value and interpret whether they are dependent or not.
 ```{r}
-# write your code here
+# chisq.test(df$Q31, df$Q276R)
 ```
 How would you label this variable measuring emancipation? **Likert, semantic difference scale, paired comparison, rank order, continuous rating scale, or Stapel.** 
 
@@ -50,7 +50,14 @@ Explore all seven items that measure female emancipation (`Q28`,`Q29`,`Q30`,`Q31
 
 *Note*: Country 1 is the country that comes first alphabetically.
 ```{r}
-# write your code here
+# femem<-df[,c(3,4,5,6,7,8,10)]
+# str(femem)
+# summary(femem)
+# cor(is.na(femem))
+# CountryNum<-ifelse(GRC$Country=="GRC",1,2)
+# table(CountryNum)
+# cor(femem,CountryNum,"pairwise.complete.obs")
+
 ```
 Does each correlation depend on the same observations?
 
