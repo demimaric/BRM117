@@ -1,0 +1,154 @@
+---
+title: "BRM1_IBA_2021: Week 1"
+author: "Fill in all student names and team number"
+date: "11/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Before you start
+
+Before you start, set up your environment. Choose a working directory that makes sense, and make sure that everytime you start a new assignment, you clean out your environment:
+- Check your working directory
+- `setwd()` to change working directory
+- `?setwd` to learn more
+- `getwd()`
+
+Below you can see a R chunk in which I check my directory and empty my environment.
+```{r}
+setwd("~/Downloads/Team120")
+getwd()
+"/Users/Demi/Downloads/Team120"
+NZS<-read.csv("NewZealand_Singapore.csv")
+GRCU<-read.csv("GRC_USA.csv")
+getwd()
+rm(list=ls()) 
+```
+*Note*: you can type your R commands below the # comment line. Feel free to add or remove # comment lines to make the code clearer. Each chunk can be executed separately. Run the commands by the green arrow on the right of the R chunk. You will see the answer below your code (see the example below). If it doesn't run, you made a mistake in your code.
+
+## Example working with Rmd file
+
+```{r}
+# here i create two random variables
+x <- rnorm(100)
+y <- rnorm(100)
+# here i inspect these variables
+summary(x)
+summary(y)
+# and plot them
+plot(x,y, col="red")
+```
+
+## Handing in the assignment and your solutions
+
+For the assignments in the first three weeks, you will use a dataset selected for your team. See list of countries_teams in folder Assignment on canvas.
+
+By the end of the week you are required to hand in this .Rmd file **as a pdf**. To do this, you need to `Knit` the document (see on top to your left next to the save button). The resulting pdf file has to be handed in via canvas. We will inspect the quality of the R code in this file. Note that your code will be checked on plagiarism.
+
+\textcolor{red}{Hand in your answers via the excel sheet (do this for all questions!). You can find the excel sheet in folder Assignment/Week1 on canvas. Your solutions will be automatically graded, so be precise with numbers! I will check on three decimals. Fill in your solutions on the `INPUT` sheet, but check them via the `OUTPUT` sheet.} 
+
+# Assignment week 1 
+
+- Create a team, and search for the zip file named with your team number (see Assignment/Data on canvas).
+- Download the zip file from canvas. In this zipfile you can find the two data files you need in this course.
+- Unpack the zip file and download the data files into your the working directory
+- You will analyze the World Values Survey (WVS) dataset during the first three weeks, and the IMDB dataset in the last two weeks.
+- The five excel sheets you need to hand in, and the codebooks of both data files you can find under Assignment on canvas.
+
+
+## 1. Inspect missings
+Read data file into the R environment (`sep = ','`). You can change the name so you'll know it is the WVS dataset and the code will be shorter. Save data in an R object that makes sense.
+
+```{r}
+setwd("~/Downloads/Team120")
+getwd()
+"/Users/Demi/Downloads/Team120"
+NZS<-read.csv("NewZealand_Singapore.csv")
+GRCU<-read.csv("GRC_USA.csv")
+WVS<-GRCU
+```
+
+Use the appropriate commands you've learned last year: `head`, `tail`,`str`, `colnames`,`summary`. To understand what the variable codes mean, look into the questionnaire and the codebook of WVS.
+```{r}
+head(WVS)
+tail(WVS)
+str(WVS)
+colnames(WVS)
+summary(WVS)
+
+```
+What is the type of the R object you've created? Choose among: **Scalar, logical vector, numeric vector, character vector, matrix, or a dataframe**. 
+
+How many observations you have per country? use `table`. Inspect how many missings you have per country for the whole data file. To do this, use `na.omit`, `nrows` and indexing to select the rows per country.
+```{r}
+USAonly<-subset(WVS, Country == "USA")
+GRConly<-subset(WVS, Country == "GRC")
+table(is.na(USAonly))
+nrow(USAonly)
+```
+
+## 2.  Inspect education
+Inspect both the recoded and original education level `Q275` and `Q275R`. How is the recoded education level constructed? Create a cross-tabulation to inspect how the variables overlap. Report the most common *recoded* education level in the data. 
+```{r}
+table(WVS$Q275)
+table(WVS$Q275R)
+xtabs(~WVS$Q275+WVS$Q275R, data = WVS)
+
+```
+
+## 3. Satisfaction financial situation
+Inspect satisfaction with the financial situation of the household measured by `Q50` using `summary` and `sd`. What is the mean and standard deviation per country?What is the mean score and standard deviation per country?
+```{r}
+summary(USAonly$Q50)
+summary(GRConly$Q50)
+sd(USAonly$Q50,na.rm="TRUE")
+sd(GRConly$Q50,na.rm="TRUE")
+```
+
+What is the mean level of satisfaction for each of the recoded education groups? Use `tapply`. 
+```{r}
+tapply(WVS$Q50, WVS$Q275R, summary)
+```
+
+## 4. Country differences in emancipation
+Inspect variable `Q31`. Make sure you understand what a 1 and what a 4 means. What is the mean and standard deviation of '*Men make better business executives than women do*' per country? Which country scores higher on emancipation? Which country shows the most variation in emancipation? Use `tapply`.
+```{r}
+tapply(WVS$Q31, WVS$Country, summary)
+sd(USAonly$Q31,na.rm = "TRUE")
+sd(GRConly$Q31,na.rm = "TRUE")
+```
+
+## 5. Measurement levels
+Both variables under 4) and 5) are represented by numbers. However, numbers can be interpreted at different levels. What is the measurement level of emancipation? What is the measurement level of satisfaction financial situation? Choose among: **Continuous, interval, ordinal or nominal**.
+
+## 6. Plot
+First plot the satisfaction financial situation using a histogram by the function `hist`. Then plot the emancipation variable analyzed under 4 using a barplot. Use `barplot` and `table`.
+
+```{r}
+hist(WVS$Q50)
+barplot(table(WVS$Q31))
+```
+
+Now plot the satisfaction financial situation per education level in one plot. 
+*Note*. Depending on the measurement level selected under 5) only a few plots are appropriate!
+
+```{r}
+barplot(table(WVS$Q50, WVS$Q275R))
+```
+
+## 7. Country plots
+How do the countries differ in how satisfied people are with their financial situation given their age? Create two plots, one for each country. Put the plots next to one another using `par(mfrow=c(1,2))`. Use `plot` from the base R, and put age on the y-axis. Make nice with the correct labels for the axes, and put the country name in the title.
+```{r}
+par(mfrow=c(1,2))
+# write your code here
+dev.off()
+```
+
+## 8. Scatterplot using ggplot2
+Plot the level of freedom of choice experienced `Q48` with financial situation satisfaction `Q50` in one plot. Make sure that freedom of choice is on x-axis. Use `ggplot` and add a line using `geom_smooth(method="lm")`. Color the observations by country (both specify under `aes` and `geom_point`. 
+```{r}
+# write your code here
+```
