@@ -50,14 +50,10 @@ Explore all seven items that measure female emancipation (`Q28`,`Q29`,`Q30`,`Q31
 
 *Note*: Country 1 is the country that comes first alphabetically.
 ```{r}
-# femem<-df[,c(3,4,5,6,7,8,10)]
-# str(femem)
-# summary(femem)
-# cor(is.na(femem))
-# CountryNum<-ifelse(GRC$Country=="GRC",1,2)
-# table(CountryNum)
-# cor(femem,CountryNum,"pairwise.complete.obs")
-
+# MatrixGRC<-cor(df[df$Country=="GRC",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
+# MatrixGRC
+# MatrixPHL<-cor(df[df$Country=="PHL",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
+# MatrixPHL
 ```
 Does each correlation depend on the same observations?
 
