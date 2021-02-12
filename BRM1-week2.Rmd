@@ -62,7 +62,15 @@ Does each correlation depend on the same observations?
 ### Recoding
 Recode the seven emancipation items so that a high number reflects a positive attitude towards female emancipation. Use indexing and what you've learned in the last assignment. Do NOT use `recode` from library `car`! Attach the recoded variables to your data with the addition `R` to their original variable names. Try to use a `for` [loop](https://www.tutorialspoint.com/r/r_for_loop.htm), and mind the `NA`s. Do not use listwise deletion! Check your results with cross tabulation.
 ```{r}
-# write your code here
+# summary(df$Q28)
+# summary(df$Q29)
+# summary(df$Q30)
+# summary(df$Q31)
+# summary(df$Q32)
+# summary(df$Q33)
+# summary(df$Q35)
+# emancipation<-c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")
+
 ```
 
 ### Cronbach's Alpha
@@ -73,13 +81,19 @@ where $k$ is the number of items, $\sigma^2_{x}$ is the variance of the observed
 
 ```{r}
 # first calculate number of items and save to object k
+c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")
+
+k<-7
+k/(k-1)
 
 
 # then calculate the variance for all items per item using var()
 # to make it easier, we use listwise deletion (use="complete.obs")
 # use diag() to get to the variances
 # sum the variances using sum()
-
+varGRC<-var(df[,c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")], use="complete.obs")
+diag(varGRC)
+sum(diag(varGRC))
 
 # lastly, calculate the variance of total test score
 # which is the sum of all covariances and variances
