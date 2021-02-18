@@ -1,0 +1,122 @@
+---
+title: "BRM1_IBA_2021: Week 3"
+author: "Fill in all student names and team number"
+date: "11/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Before you start, install your working environment
+```{r}
+getwd()
+rm(list=ls()) # remove all objects
+```
+
+# Assignment week 3 
+This week you will continue to work on the WVS data. Read in the data file.
+
+## 1. $t$-test
+Test the differences in emancipation `Q31` between the genders measured by `Q260`. To learn what the answers to these questions mean, have a look at the coding manual. Report the $t$-value, $p$-value, and significance. Which gender is most positive about female business executives? Think about what totally agree (1) means!
+```{r}
+# write your code here
+```
+
+## 2. Hypothesis
+To know more about emancipation within the countries, you would need to know whether males support female business executives. Perform the t-test on emancipation for males across the two countries, and inspect the results. Use indexing! 
+In which country are males more positive about female business executives? Remember, that differences in means only are meaningful for the wider population if significant. 
+
+```{r}
+# write your code here
+```
+
+Write down the one-sided hypothesis that males in country 1 are more positive about female business executives than males in country 2 in mathematical notation. 
+*Note*: country 1 comes first alphabetically.
+
+## 3. One-sided $t$-test
+Test the hypothesis under 2 using a regular $t$-test, and report $t$-value, $p$-value and interpret the significance (use 95% confidence interval). Use indexing! 
+```{r}
+# write your code here
+```
+Reflect on the t-test you have conducted above. Under which conditions is the $t$-test you conducted unreliable? 
+
+Check the gender-specific means of each country using `tapply` and `list`, and explain why you think emancipation is higher or lower in country 1. Interpret the mean using the original categories (see codebook). Use 2.5 as the cutoff point between agree and disagree.
+
+```{r}
+# write your code here
+```
+In which country are males more positive about female business executives?
+
+## 4. Assumption: Equal variances
+Test whether the variances are equal among males and females in country 2, using the formula below.
+
+$$F=\frac{N-k}{k-1} * \frac{\sum_{i=1}^k N_{i}(Z_{i.} - Z_{..})^2}{\sum_{i=1}^k  \sum_{j=1}^{N_{i}}(Z_{ij} - Z_{i.})^2}$$ 
+
+where $N$ is total number of observations, $N_{i}$ the observations in group $i$, $k$ is the number of groups, $Z_{ij}$ are the absolute differences with the median in group $i$, $Z_{i.}$ is the mean in group $i$, and $Z_{..}$ is the overall mean across all groups. Be aware that this formula is based on list-wise deletion. Follow the steps below.
+
+Check with `leveneTest` from `car` package. Report $F$-value, $p$-value and significance. *Note*: The `var.test` also tests variances is less robust to deviations of the normal distribution.
+```{r}
+# First define N, k
+# use na.omit to perform listwise deletion 
+# only for the two variables included!
+
+
+# then define the group specific numbers
+# Ni and group means Zi
+# label them N1, N2, and respectively Z1 and Z2
+
+
+# calculate the Zij
+# label them Z1j and Z2j
+
+
+# finally calculate the overall group mean 
+# label this Z
+
+
+# then calculate the numerator and denominator
+# label them between_var, and within_var as they represent these variances
+
+
+# check with leveneTest
+```
+
+
+## 5. ANOVA: Test mean differences
+Perform an ANOVA to analyze how education groups measured by `Q275R` differ in their views on female emancipation. Use `aov` and `factor` to test the mean differences between the groups. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Save the ANOVA test in an R object. 
+```{r}
+# write your code here
+```
+
+Use `$coeff` to get the means used in the ANOVA test. Which education group is the least positive about female emancipation? 
+
+```{r}
+# write your code here
+```
+
+## 6. Tukey-B
+Conduct a Tukey-B test to see which education groups are significantly different. Use `TukeyHSD`. Report the education category of the groups that differ significantly with the primary education group, or that there are no significant differences. 
+```{r}
+# write your code here
+```
+
+## 7. ANOVA: Inspect mean differences
+Repeat an ANOVA as you did under 5 for how age groups measured by `Q278R` differ in their views on female emancipation for **country 1**. Save the ANOVA test in an R object. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Use `$coeff` to get the means used in the ANOVA test. Which group is the least positive about female emancipation in country 1? 
+
+```{r}
+# write your code here
+```
+## 7. Alternative hypothesis ANOVA
+Think about the null hypothesis that you test in an ANOVA test. What is an alternative hypothesis of ANOVA?
+
+## 8. Weighing
+A weighted mean is used to correct for sampling. If a group occurs significantly more or less in the population than they do in the sample, you can use sampling weights to correct for this discrepancy. You can obtain the weighted means by multiplying the means calculated under 5) with the weight `W_WEIGHT`:
+
+$\sum ({m}_{i}*{w}_{i})/\sum ({w}_{i})$, 
+
+where $m$ stands for mean, $w$ for weight, and $i$ for individual. Using the formula above, the sampling weight makes sure that at an aggregate level, the sample has the same characteristics as the population. Calculate the weighted means of emancipation `Q31`. Report the weighted mean for country 1. Mind the missings!
+```{r}
+# write your code here
+```

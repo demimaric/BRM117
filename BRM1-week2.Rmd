@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/github/BRM117")
 ```
 
 ## before you start, install your working environment 
@@ -34,14 +35,14 @@ Continue with the data file of week 1
 Test whether financial satisfaction `Q50` is lower than 6, and 
 report the $t$-value and $p$-value. 
 ```{r}
-# t.test(df$Q50)
+t.test(df$Q50)
 ```
 How would you label this variable measuring satisfaction? **Likert, semantic difference scale, paired comparison, rank order, continuous rating scale, or Stapel.** 
 
 ## 2. Chisquare $X^2$ test
 Analyze dependency between emancipation `Q31` and education recoded `Q276R`. Report the $X^2$ (=chisquare value), the p-value and interpret whether they are dependent or not.
 ```{r}
-# chisq.test(df$Q31, df$Q276R)
+chisq.test(df$Q31, df$Q276R)
 ```
 How would you label this variable measuring emancipation? **Likert, semantic difference scale, paired comparison, rank order, continuous rating scale, or Stapel.** 
 
@@ -50,10 +51,10 @@ Explore all seven items that measure female emancipation (`Q28`,`Q29`,`Q30`,`Q31
 
 *Note*: Country 1 is the country that comes first alphabetically.
 ```{r}
-# MatrixGRC<-cor(df[df$Country=="GRC",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
-# MatrixGRC
-# MatrixPHL<-cor(df[df$Country=="PHL",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
-# MatrixPHL
+MatrixGRC<-cor(df[df$Country=="GRC",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
+MatrixGRC
+MatrixPHL<-cor(df[df$Country=="PHL",c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")],use="pairwise.complete.obs")
+MatrixPHL
 ```
 Does each correlation depend on the same observations?
 
@@ -62,14 +63,14 @@ Does each correlation depend on the same observations?
 ### Recoding
 Recode the seven emancipation items so that a high number reflects a positive attitude towards female emancipation. Use indexing and what you've learned in the last assignment. Do NOT use `recode` from library `car`! Attach the recoded variables to your data with the addition `R` to their original variable names. Try to use a `for` [loop](https://www.tutorialspoint.com/r/r_for_loop.htm), and mind the `NA`s. Do not use listwise deletion! Check your results with cross tabulation.
 ```{r}
-# summary(df$Q28)
-# summary(df$Q29)
-# summary(df$Q30)
-# summary(df$Q31)
-# summary(df$Q32)
-# summary(df$Q33)
-# summary(df$Q35)
-# emancipation<-c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")
+summary(df$Q28)
+summary(df$Q29)
+summary(df$Q30)
+summary(df$Q31)
+summary(df$Q32)
+summary(df$Q33)
+summary(df$Q35)
+emancipation<-c("Q28","Q29","Q30","Q31","Q32","Q33","Q35")
 
 ```
 
@@ -115,8 +116,7 @@ You can check whether you did it correctly, using the `psych` package. Install t
 
 ```{r}
 # check with alpha() from psych package 
-# install.packages("psych")
-library(psych)
+
 # write your code here
 ```
 
