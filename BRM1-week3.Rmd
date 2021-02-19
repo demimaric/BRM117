@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Before you start, install your working environment
 ```{r}
 getwd()
-rm(list=ls()) # remove all objects
+rm(list=ls()) 
+df<-read.csv("GRC_PHL.csv")
 ```
 
 # Assignment week 3 
@@ -21,7 +22,8 @@ This week you will continue to work on the WVS data. Read in the data file.
 ## 1. $t$-test
 Test the differences in emancipation `Q31` between the genders measured by `Q260`. To learn what the answers to these questions mean, have a look at the coding manual. Report the $t$-value, $p$-value, and significance. Which gender is most positive about female business executives? Think about what totally agree (1) means!
 ```{r}
-# write your code here
+tapply(df$Q31, df$Q260, mean, na.rm=T)
+t.test(df$Q31~df$Q260)
 ```
 
 ## 2. Hypothesis
@@ -29,7 +31,8 @@ To know more about emancipation within the countries, you would need to know whe
 In which country are males more positive about female business executives? Remember, that differences in means only are meaningful for the wider population if significant. 
 
 ```{r}
-# write your code here
+t.test(df$Q31[df$Q260==1]~df$Country[df$Q260==1])
+
 ```
 
 Write down the one-sided hypothesis that males in country 1 are more positive about female business executives than males in country 2 in mathematical notation. 
@@ -38,7 +41,7 @@ Write down the one-sided hypothesis that males in country 1 are more positive ab
 ## 3. One-sided $t$-test
 Test the hypothesis under 2 using a regular $t$-test, and report $t$-value, $p$-value and interpret the significance (use 95% confidence interval). Use indexing! 
 ```{r}
-# write your code here
+t.test(Q31~Country, df[df$Q260==1,], mu=2.780261,conf.level=0.95, alternative="greater")
 ```
 Reflect on the t-test you have conducted above. Under which conditions is the $t$-test you conducted unreliable? 
 

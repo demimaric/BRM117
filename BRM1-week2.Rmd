@@ -1,6 +1,6 @@
 ---
 title: "BRM1_IBA_2021: Week 2"
-author: "Fill in all student names and team number"
+author: "team 117, Ashley Verdies, Merle, Demi Maric"
 date: "11/3/2020"
 output: pdf_document
 ---
@@ -27,8 +27,8 @@ rm(list=ls()) # remove all objects
 
 Continue with the data file of week 1
 ```{r}
-# read in data file
-# you can copy the code of last week
+df<-read.csv("GRC_PHL.csv")
+str(df)
 ```
 
 ## 1. $t$-test
