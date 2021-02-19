@@ -97,19 +97,20 @@ t.test(df$Q260~factor(df$Country == "PHL"),var.equal=T)
 ## 5. ANOVA: Test mean differences
 Perform an ANOVA to analyze how education groups measured by `Q275R` differ in their views on female emancipation. Use `aov` and `factor` to test the mean differences between the groups. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Save the ANOVA test in an R object. 
 ```{r}
-# write your code here
+aov1 <- aov(df$Q31~factor(df$Q275R))
+summary(aov1)
 ```
 
 Use `$coeff` to get the means used in the ANOVA test. Which education group is the least positive about female emancipation? 
 
 ```{r}
-# write your code here
+aov1$coeff
 ```
 
 ## 6. Tukey-B
 Conduct a Tukey-B test to see which education groups are significantly different. Use `TukeyHSD`. Report the education category of the groups that differ significantly with the primary education group, or that there are no significant differences. 
 ```{r}
-# write your code here
+TukeyHSD(aov1)
 ```
 
 ## 7. ANOVA: Inspect mean differences
@@ -128,5 +129,6 @@ $\sum ({m}_{i}*{w}_{i})/\sum ({w}_{i})$,
 
 where $m$ stands for mean, $w$ for weight, and $i$ for individual. Using the formula above, the sampling weight makes sure that at an aggregate level, the sample has the same characteristics as the population. Calculate the weighted means of emancipation `Q31`. Report the weighted mean for country 1. Mind the missings!
 ```{r}
-# write your code here
+m<- mean(df$Q31)
+
 ```
