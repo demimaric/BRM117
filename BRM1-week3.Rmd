@@ -89,7 +89,8 @@ Z1<- sd(..)
 
 
 # check with leveneTest
-leveneTest(df$Q260~factor(df$Country == "PHL"),center=mean)
+leveneTest(df$Q260~factor(df$Country == "PHL"),var.equal=T)
+t.test(df$Q260~factor(df$Country == "PHL"),var.equal=T)
 ```
 
 
