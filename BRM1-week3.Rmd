@@ -22,7 +22,6 @@ This week you will continue to work on the WVS data. Read in the data file.
 ## 1. $t$-test
 Test the differences in emancipation `Q31` between the genders measured by `Q260`. To learn what the answers to these questions mean, have a look at the coding manual. Report the $t$-value, $p$-value, and significance. Which gender is most positive about female business executives? Think about what totally agree (1) means!
 ```{r}
-tapply(df$Q31, df$Q260, mean, na.rm=T)
 t.test(df$Q31~df$Q260)
 ```
 
@@ -48,7 +47,7 @@ Reflect on the t-test you have conducted above. Under which conditions is the $t
 Check the gender-specific means of each country using `tapply` and `list`, and explain why you think emancipation is higher or lower in country 1. Interpret the mean using the original categories (see codebook). Use 2.5 as the cutoff point between agree and disagree.
 
 ```{r}
-# write your code here
+tapply(df$Q31, list(df$Q260,df$Country), mean, na.rm=T)
 ```
 In which country are males more positive about female business executives?
 
@@ -64,13 +63,19 @@ Check with `leveneTest` from `car` package. Report $F$-value, $p$-value and sign
 # First define N, k
 # use na.omit to perform listwise deletion 
 # only for the two variables included!
-
+D<-na.omit(df[c("Q31","Q260")])
+N <- nrow(D)
+k<-2
 
 # then define the group specific numbers
 # Ni and group means Zi
 # label them N1, N2, and respectively Z1 and Z2
+D1<-nrow(df[df$Q31 & df$Q260==1,])
+N1<-na.omit(D1)
+D2<-nrow(df[df$Q31 & df$Q260==2,])
+N2<-na.omit(D2)
 
-
+Z1<- sd(..)
 # calculate the Zij
 # label them Z1j and Z2j
 
@@ -84,6 +89,7 @@ Check with `leveneTest` from `car` package. Report $F$-value, $p$-value and sign
 
 
 # check with leveneTest
+leveneTest(df$Q260~factor(df$Country == "PHL"),center=mean)
 ```
 
 
