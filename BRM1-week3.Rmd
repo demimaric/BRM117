@@ -117,7 +117,7 @@ TukeyHSD(aov1)
 Repeat an ANOVA as you did under 5 for how age groups measured by `Q278R` differ in their views on female emancipation for **country 1**. Save the ANOVA test in an R object. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Use `$coeff` to get the means used in the ANOVA test. Which group is the least positive about female emancipation in country 1? 
 
 ```{r}
-# write your code here
+aov(df$Q31[df$Country==1]~factor(df$Q278R))
 ```
 ## 7. Alternative hypothesis ANOVA
 Think about the null hypothesis that you test in an ANOVA test. What is an alternative hypothesis of ANOVA?
@@ -129,6 +129,6 @@ $\sum ({m}_{i}*{w}_{i})/\sum ({w}_{i})$,
 
 where $m$ stands for mean, $w$ for weight, and $i$ for individual. Using the formula above, the sampling weight makes sure that at an aggregate level, the sample has the same characteristics as the population. Calculate the weighted means of emancipation `Q31`. Report the weighted mean for country 1. Mind the missings!
 ```{r}
-m<- mean(df$Q31)
+sum(df$Q31[df$Country=="GRC"] * df$W_WEIGHT[df$Country=="GRC"], na.rm = TRUE)/sum(df$W_WEIGHT[df$Country=="GRC"], na.rm = TRUE)
 
 ```
