@@ -1,6 +1,6 @@
 ---
 title: "BRM1_IBA_2021: Week 3"
-author: "Fill in all student names and team number"
+author: "Demi Maric, Ashley, Merle, teamnumber 117"
 date: "11/3/2020"
 output: pdf_document
 ---
