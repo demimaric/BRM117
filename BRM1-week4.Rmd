@@ -68,6 +68,11 @@ Perform a simple regression using the MPAA_rating to explain opening revenues. N
 
 ```{r}
 # write your R code here
+class(df$Opening_revenues)
+class(df$MPAA_rating)
+OR2<-as.character(df$Opening_revenues)
+summary(lm(OR2~df$MPAA_rating,df))
+9140749-4090198 
 ```
 
 # 4. ANOVA vs simple regression
