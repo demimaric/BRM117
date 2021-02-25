@@ -1,0 +1,137 @@
+---
+title: 'BRM1_IBA_2021: Week 4'
+author: "Fill in all student names and team number"
+date: "11/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Before you start, install your working environment 
+- check your working directory
+- setwd() to change working directory
+- remove all objects, start with an empty environment
+
+```{r}
+getwd()
+rm(list=ls()) 
+```
+
+# Assignment week 4 
+Use the IMDB data file that you will analyze during the coming two weeks, the description of the variables, and the excel sheets that you need to hand in. You can find the files in the zip file you downloaded in week 1.
+
+Read the IMDB data file into R:
+- download data file in your working directory
+- read data file `sep = ''`
+- save data in an R object
+- inspect dataframe
+
+```{r}
+# write your R code here
+```
+
+# 1. Dummy variable
+Each movie has a genre attached to it. Some even three. Inspect the first genre `Genre1`, and set all empty strings `df$Genre1==" "` (mind the space in between the quotation marks!) to `NA`. Create a dummy variable equal to 1 if a movie's genre is `Action` and 0 if it has another genre. First inspect the variable for frequencies, levels and missings! Missing values in `Genre1` should also be missing in the dummy variable. Report the frequencies.
+
+```{r}
+# write your R code here
+```
+
+# 2. Inspect variables
+First, set all empty strings in MPAA rating to `NA`. Then inspect what the mean and standard deviation of IMDB-rating per MPAA-rating and country. Use `tapply`.
+```{r}
+# write your R code here
+```
+
+# 3. Simple regression
+Perform a simple regression using the MPAA_rating to explain opening revenues. Note that MPAA_rating is treated as a factor by R. What does the intercept represent? Calculate the absolute mean difference between PG and PG-13 rated movies using the beta coefficients. Can you tell whether this difference is significant?
+
+```{r}
+# write your R code here
+```
+
+# 4. ANOVA vs simple regression
+Compare the result you obtained in exercise 4 with an ANOVA test on the original variable MPAA rating. To which mean all the means are compared in a standard ANOVA test? Report the $F$-value. Inspect the mean differences using a `TukeyHSD` test. 
+
+```{r}
+# write your R code here
+```
+
+What is the between variance and what is the within variance? Although you can read this from the ANOVA output, you can also calculate these numbers yourself. The formula for the between variance of groups j= (1,2...k):
+
+$$between=\sum_{j=1}^kn_{j}\left(\overline{X}_{j}-\overline{X}\right)^2$$
+where $\overline{X}$ is the overall mean. Usually one reports the mean square, where you divide by $k-1$. 
+
+Calculate the between variance yourself. Make sure you remove the missings before you start! Check with `aov` calculated above. Show your code below:
+```{r}
+# first use na.omit to delete all the missing values on opening revenues and MPAArating
+
+# then get the variables and save them in objects to call later
+
+# create a score of between variance of zero
+
+# start for loop
+# loop over the groups
+# for each group you will calculate (1) the length which is nj, the group mean
+# fill in the formula, and add each run of the loop
+# the between variance of that group to the overall between variance
+
+# divide by number of groups - 1 to get mean square of between variance
+
+# check with aov
+
+```
+
+The formula for the within variance is as follows:
+
+$$within=\sum_{j=1}^k \sum_{i=1}^n\left(X_{ij}-\overline{X}_{j}\right)^2$$
+
+Calculate the within variance yourself. 
+```{r}
+# same as before but now within the for loop over groups
+# you add the calculation over observations (i.e. movies)
+# substract the group mean from each observation, and sum these
+# add these across groups to get the within variance
+```
+
+# 5. Reference category
+Re-estimate your regression under 2 by altering the reference category to the R rated movies. Use the `relevel` and report the $F$-value. How would you interpret the intercept now?
+```{r}
+# write your R code here
+```
+Why did the beta coefficient of PG-13 change wrt 2?
+
+
+# 6. Multiple regression
+Regress IMDB rating and country on opening revenues. Before you start, create a complete dataframe (with only the three variables needed) using `na.omit`, and keep this in a separate object. **This step requires standardizing. To make sure R performs standardization on the complete dataset, we will first create a new dataframe of complete cases.**. Perform the analysis on this new complete dataframe. Save the `lm` object in R. Report standardized coefficients. Use `scale` on all *numeric* variables.
+```{r}
+# write your R code here
+```
+
+Compare with the predicted values of the regression. Use `predict` to get the predicted scores from the `lm` object in R. Explore the mean predicted value for each country using `tapply`.
+```{r}
+# write your R code here
+```
+
+Inspect the regression assumptions of the multiple regression. Determine whether the regression assumptions are violated. 
+```{r}
+par(mfrow=c(2,2)) # here I make sure to plot 4 graphs next and below to another
+# write your R code here
+dev.off()
+```
+
+As you can observe, the residuals are not normally distributed, and violates the assumption of normality. In the following exercises a transformation is used in an attempt to make the residuals more normally distributed.
+
+# 7. Log transformation
+Rerun the model you've estimated in exercise 6 but now use a logarithmic scale for the dependent variable with `log()` and do not standardize the numeric variable(s). Calculate the predicted value for a movie in country 1 for an IMDB-rating of 8.5. Make sure predicted value is measured at the original scale using `exp()`. 
+```{r}
+# write your R code here
+```
+
+# 8. Predict with and without transformation
+Rerun the unstandardized regression of exercise 7 but now without the log transformation. Calculate the predicted value for a movie in country 1 for an IMDB-rating of 8.5. Compare with the predicted value based on model estimated in exercise 7. Can you explain the difference?
+```{r}
+# write your R code here
+```

@@ -74,8 +74,6 @@ D1<-nrow(df[df$Q31 & df$Q260==1,])
 N1<-na.omit(D1)
 D2<-nrow(df[df$Q31 & df$Q260==2,])
 N2<-na.omit(D2)
-
-Z1<- sd(..)
 # calculate the Zij
 # label them Z1j and Z2j
 
@@ -89,6 +87,7 @@ Z1<- sd(..)
 
 
 # check with leveneTest
+library(car)
 leveneTest(df$Q260~factor(df$Country == "PHL"),var.equal=T)
 t.test(df$Q260~factor(df$Country == "PHL"),var.equal=T)
 ```
@@ -97,7 +96,7 @@ t.test(df$Q260~factor(df$Country == "PHL"),var.equal=T)
 ## 5. ANOVA: Test mean differences
 Perform an ANOVA to analyze how education groups measured by `Q275R` differ in their views on female emancipation. Use `aov` and `factor` to test the mean differences between the groups. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Save the ANOVA test in an R object. 
 ```{r}
-aov1 <- aov(df$Q31~factor(df$Q275R))
+aov1<-aov(df$Q31~as.factor(df$Q275R))
 summary(aov1)
 ```
 
@@ -117,7 +116,7 @@ TukeyHSD(aov1)
 Repeat an ANOVA as you did under 5 for how age groups measured by `Q278R` differ in their views on female emancipation for **country 1**. Save the ANOVA test in an R object. Report the $F$-value, the $p$-value and interpret whether the differences are significant. Use `$coeff` to get the means used in the ANOVA test. Which group is the least positive about female emancipation in country 1? 
 
 ```{r}
-aov(df$Q31[df$Country==1]~factor(df$Q278R))
+
 ```
 ## 7. Alternative hypothesis ANOVA
 Think about the null hypothesis that you test in an ANOVA test. What is an alternative hypothesis of ANOVA?
