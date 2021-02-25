@@ -1,6 +1,6 @@
 ---
 title: 'BRM1_IBA_2021: Week 4'
-author: "Fill in all student names and team number"
+author: "Demi Maric,  Ashley, Merle, Team 117"
 date: "11/3/2020"
 output: pdf_document
 ---
@@ -29,7 +29,9 @@ Read the IMDB data file into R:
 - inspect dataframe
 
 ```{r}
-# write your R code here
+setwd("~/github/BRM117")
+df<-read.csv("Netherlands_USA.csv", sep=",")
+str(df)
 ```
 
 # 1. Dummy variable
@@ -37,12 +39,28 @@ Each movie has a genre attached to it. Some even three. Inspect the first genre 
 
 ```{r}
 # write your R code here
+table(df$Genre1)
+df$Genre1.1<-NA
+df$Genre1.1[df$Genre1==" "]<-NA
+df$Genre1.1[df$Genre1=="Action"]<-1
+df$Genre1.1<-ifelse(df$Genre1 == "Action", 1, 0)
+tail(df$Genre1.1)
+table(df$Genre1, df$Genre1.1)
+sum(is.na(df$Genre1))
+sum(is.na(df$Genre1.1))
+length(df$Genre1.1[df$Genre1.1==1])
+length(df$Genre1.1[df$Genre1.1==0])
 ```
 
 # 2. Inspect variables
 First, set all empty strings in MPAA rating to `NA`. Then inspect what the mean and standard deviation of IMDB-rating per MPAA-rating and country. Use `tapply`.
 ```{r}
 # write your R code here
+df$MPAA_rating[df$MPAA_rating==" "]<-NA
+df$MPAA_rating[df$MPAA_rating=="NA"]<-NA
+MPAACountry<-interaction(df$MPAA_rating,df$Country)
+tapply(df$imdb.com_rating,MPAACountry,sd,na.rm=TRUE)
+tapply(df$imdb.com_rating,MPAACountry,mean,na.rm=TRUE)
 ```
 
 # 3. Simple regression
