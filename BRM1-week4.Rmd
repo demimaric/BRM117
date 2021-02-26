@@ -110,6 +110,7 @@ for (group in groups) {
  E<- (mean(y[x==group])-mean(y))^2
  between <- 0
  between <- between + nj*E
+ 
  print(between)
 }
 # create a score of between variance of zero
@@ -202,5 +203,6 @@ Rerun the unstandardized regression of exercise 7 but now without the log transf
 # write your R code here
 lm8 <- (lm((df$Opening_revenues) ~ df$imdb.com_rating + factor(df$Country)))
 lm8$coefficients[1]+lm8$coefficients[2]*8.5+lm8$coefficients[3]*0
+
 summary(lm8)
 ```
