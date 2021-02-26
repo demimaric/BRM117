@@ -73,6 +73,7 @@ class(df$MPAA_rating)
 OR2<-as.character(df$Opening_revenues)
 summary(lm(OR2~df$MPAA_rating,df))
 9140749-4090198 
+print("test")
 ```
 
 # 4. ANOVA vs simple regression
