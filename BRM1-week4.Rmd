@@ -81,6 +81,10 @@ Compare the result you obtained in exercise 4 with an ANOVA test on the original
 
 ```{r}
 # write your R code here
+aov1 <- aov(df$Opening_revenues ~ df$MPAA_rating)
+summary(aov1)
+TukeyHSD(aov1)
+## F-value: 8.253
 ```
 
 What is the between variance and what is the within variance? Although you can read this from the ANOVA output, you can also calculate these numbers yourself. The formula for the between variance of groups j= (1,2...k):
@@ -91,11 +95,25 @@ where $\overline{X}$ is the overall mean. Usually one reports the mean square, w
 Calculate the between variance yourself. Make sure you remove the missings before you start! Check with `aov` calculated above. Show your code below:
 ```{r}
 # first use na.omit to delete all the missing values on opening revenues and MPAArating
-
+dff<- na.omit(df[,c("Opening_revenues", "MPAA_rating")])
 # then get the variables and save them in objects to call later
-
+y<- dff$Opening_revenues
+x<- dff$MPAA_rating
+groups <- levels(factor(dff$MPAA_rating))
+unique(groups)
+n1 <- length(y[x=="G"])
+n2<- length(y[x=="PG"])
+n3<- length(y[x=="PG-13"])
+n4<- length(y[x=="R"])
+for (group in groups) {
+ nj <- length(y[x==group]) 
+ E<- (mean(y[x==group])-mean(y))^2
+ between <- 0
+ between <- between + nj*E
+ print(between)
+}
 # create a score of between variance of zero
-
+between/(length(groups)-1)
 # start for loop
 # loop over the groups
 # for each group you will calculate (1) the length which is nj, the group mean
@@ -105,7 +123,7 @@ Calculate the between variance yourself. Make sure you remove the missings befor
 # divide by number of groups - 1 to get mean square of between variance
 
 # check with aov
-
+summary(aov1)
 ```
 
 The formula for the within variance is as follows:
@@ -118,12 +136,27 @@ Calculate the within variance yourself.
 # you add the calculation over observations (i.e. movies)
 # substract the group mean from each observation, and sum these
 # add these across groups to get the within variance
+dff<- na.omit(df[,c("Opening_revenues", "MPAA_rating")])
+y<- dff$Opening_revenues
+x<- dff$MPAA_rating
+groups <- levels(factor(dff$MPAA_rating))
+
+within <- 0
+for (group in groups) {
+  nj <- length(y[x==group])
+  w<- (y[x==group]-mean(y[x==group]))^2
+  within <- within+sum(w)
+}
+within/length(y)-length(groups)
 ```
 
 # 5. Reference category
 Re-estimate your regression under 2 by altering the reference category to the R rated movies. Use the `relevel` and report the $F$-value. How would you interpret the intercept now?
 ```{r}
 # write your R code here
+lm5 <- lm(df$Opening_revenues ~ relevel(factor(df$MPAA_rating), "R"))
+summary(lm5)
+## F-value: 8.253
 ```
 Why did the beta coefficient of PG-13 change wrt 2?
 
@@ -132,17 +165,22 @@ Why did the beta coefficient of PG-13 change wrt 2?
 Regress IMDB rating and country on opening revenues. Before you start, create a complete dataframe (with only the three variables needed) using `na.omit`, and keep this in a separate object. **This step requires standardizing. To make sure R performs standardization on the complete dataset, we will first create a new dataframe of complete cases.**. Perform the analysis on this new complete dataframe. Save the `lm` object in R. Report standardized coefficients. Use `scale` on all *numeric* variables.
 ```{r}
 # write your R code here
+df6 <- na.omit(df[,c("imdb.com_rating", "Country", "Opening_revenues")])
+lm6 <- lm(scale(df6$Opening_revenues) ~ scale(df6$imdb.com_rating) + df6$Country)
+summary(lm6)
 ```
 
 Compare with the predicted values of the regression. Use `predict` to get the predicted scores from the `lm` object in R. Explore the mean predicted value for each country using `tapply`.
 ```{r}
 # write your R code here
+tapply(predict(lm6), df6$Country, mean, na.rm = T)
 ```
 
 Inspect the regression assumptions of the multiple regression. Determine whether the regression assumptions are violated. 
 ```{r}
 par(mfrow=c(2,2)) # here I make sure to plot 4 graphs next and below to another
 # write your R code here
+plot(lm6)
 dev.off()
 ```
 
@@ -152,10 +190,17 @@ As you can observe, the residuals are not normally distributed, and violates the
 Rerun the model you've estimated in exercise 6 but now use a logarithmic scale for the dependent variable with `log()` and do not standardize the numeric variable(s). Calculate the predicted value for a movie in country 1 for an IMDB-rating of 8.5. Make sure predicted value is measured at the original scale using `exp()`. 
 ```{r}
 # write your R code here
+lm7 <- (lm(log(df$Opening_revenues) ~ df$imdb.com_rating + factor(df$Country)))
+lm7$coefficients[1] + lm7$coefficients[2]*8.5 + lm7$coefficients[3]*0
+exp(lm7$coefficients[1] + lm7$coefficients[2]*8.5 + lm7$coefficients[3]*0)
+summary(lm7)
 ```
 
 # 8. Predict with and without transformation
 Rerun the unstandardized regression of exercise 7 but now without the log transformation. Calculate the predicted value for a movie in country 1 for an IMDB-rating of 8.5. Compare with the predicted value based on model estimated in exercise 7. Can you explain the difference?
 ```{r}
 # write your R code here
+lm8 <- (lm((df$Opening_revenues) ~ df$imdb.com_rating + factor(df$Country)))
+lm8$coefficients[1]+lm8$coefficients[2]*8.5+lm8$coefficients[3]*0
+summary(lm8)
 ```
