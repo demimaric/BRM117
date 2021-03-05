@@ -1,0 +1,838 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={BRM1\_IBA\_2021: Week 4},
+  pdfauthor={Demi Maric, Ashley, Merle, Team 117},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{BRM1\_IBA\_2021: Week 4}
+\author{Demi Maric, Ashley, Merle, Team 117}
+\date{11/3/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{before-you-start-install-your-working-environment}{%
+\subsection{Before you start, install your working
+environment}\label{before-you-start-install-your-working-environment}}
+
+\begin{itemize}
+\tightlist
+\item
+  check your working directory
+\item
+  setwd() to change working directory
+\item
+  remove all objects, start with an empty environment
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C:/Users/Laptop/Documents/github/BRM117"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{()) }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{assignment-week-4}{%
+\section{Assignment week 4}\label{assignment-week-4}}
+
+Use the IMDB data file that you will analyze during the coming two
+weeks, the description of the variables, and the excel sheets that you
+need to hand in. You can find the files in the zip file you downloaded
+in week 1.
+
+Read the IMDB data file into R: - download data file in your working
+directory - read data file
+\texttt{sep\ =\ \textquotesingle{}\textquotesingle{}} - save data in an
+R object - inspect dataframe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"~/github/BRM117"}\NormalTok{)}
+\NormalTok{df<-}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Netherlands_USA.csv"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{","}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1153 obs. of  18 variables:
+##  $ Movie_ID                            : int  1 1 2 2 3 3 4 4 5 5 ...
+##  $ Movie                               : chr  "42" "42" "2012" "2012" ...
+##  $ Release_date                        : chr  "4/12/2013" "4/12/2013" "11/13/2009" "11/13/2009" ...
+##  $ Distributor                         : chr  "WB" "WB" "Sony" "Sony" ...
+##  $ MPAA_rating                         : chr  "PG-13" "PG-13" "PG-13" "PG-13" ...
+##  $ Runtime                             : int  128 128 158 158 95 95 102 102 109 109 ...
+##  $ Production_budget                   : num  40 40 200 200 7.5 7.5 NA NA 61 61 ...
+##  $ Genre1                              : chr  "Biography" "Biography" "Action" "Action" ...
+##  $ Genre2                              : chr  "Drama" "Drama" "Adventure" "Adventure" ...
+##  $ Genre3                              : chr  "Sport" "Sport" "Sci-Fi" "Sci-Fi" ...
+##  $ imdb.com_rating                     : num  7.5 7.5 5.8 5.8 7.8 7.8 6.4 6.4 6.8 6.8 ...
+##  $ Country                             : chr  "Netherlands" "USA" "Netherlands" "USA" ...
+##  $ Opening_revenues                    : int  NA 27487144 1880951 65237614 60289 834501 307757 23722310 501591 27059130 ...
+##  $ Opening_screens                     : int  NA 3003 127 3404 15 27 70 3255 75 3025 ...
+##  $ Opening_revenues_indexed            : num  NA 0.1578 0.527 0.4567 0.0169 ...
+##  $ Opening_screens_indexed             : num  NA 0.7061 0.5292 0.7871 0.0625 ...
+##  $ Opening_revenues_indexed_transformed: num  NA -1.674 0.108 -0.174 -4.064 ...
+##  $ Opening_screens_indexed_transformed : num  NA 0.876 0.117 1.307 -2.708 ...
+\end{verbatim}
+
+\hypertarget{dummy-variable}{%
+\section{1. Dummy variable}\label{dummy-variable}}
+
+Each movie has a genre attached to it. Some even three. Inspect the
+first genre \texttt{Genre1}, and set all empty strings
+\texttt{df\$Genre1=="\ "} (mind the space in between the quotation
+marks!) to \texttt{NA}. Create a dummy variable equal to 1 if a movie's
+genre is \texttt{Action} and 0 if it has another genre. First inspect
+the variable for frequencies, levels and missings! Missing values in
+\texttt{Genre1} should also be missing in the dummy variable. Report the
+frequencies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##                  Action   Adventure   Animation   Biography      Comedy 
+##           2         388          89          24          53         271 
+##       Crime Documentary       Drama     Fantasy      Horror     Mystery 
+##          50          24         150           5          79           6 
+##     Romance      Sci-Fi       Short 
+##           2           4           6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{<-}\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{[df}\OperatorTok{$}\NormalTok{Genre1}\OperatorTok{==}\StringTok{" "}\NormalTok{]<-}\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{[df}\OperatorTok{$}\NormalTok{Genre1}\OperatorTok{==}\StringTok{"Action"}\NormalTok{]<-}\DecValTok{1}
+\NormalTok{df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{<-}\KeywordTok{ifelse}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1 }\OperatorTok{==}\StringTok{ "Action"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\KeywordTok{tail}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0 0 0 0 0 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1, df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              
+##                 0   1
+##                 2   0
+##   Action        0 388
+##   Adventure    89   0
+##   Animation    24   0
+##   Biography    53   0
+##   Comedy      271   0
+##   Crime        50   0
+##   Documentary  24   0
+##   Drama       150   0
+##   Fantasy       5   0
+##   Horror       79   0
+##   Mystery       6   0
+##   Romance       2   0
+##   Sci-Fi        4   0
+##   Short         6   0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{[df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\OperatorTok{==}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 388
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\NormalTok{[df}\OperatorTok{$}\NormalTok{Genre1}\FloatTok{.1}\OperatorTok{==}\DecValTok{0}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 765
+\end{verbatim}
+
+\hypertarget{inspect-variables}{%
+\section{2. Inspect variables}\label{inspect-variables}}
+
+First, set all empty strings in MPAA rating to \texttt{NA}. Then inspect
+what the mean and standard deviation of IMDB-rating per MPAA-rating and
+country. Use \texttt{tapply}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{df}\OperatorTok{$}\NormalTok{MPAA_rating[df}\OperatorTok{$}\NormalTok{MPAA_rating}\OperatorTok{==}\StringTok{" "}\NormalTok{]<-}\OtherTok{NA}
+\NormalTok{df}\OperatorTok{$}\NormalTok{MPAA_rating[df}\OperatorTok{$}\NormalTok{MPAA_rating}\OperatorTok{==}\StringTok{"NA"}\NormalTok{]<-}\OtherTok{NA}
+\NormalTok{MPAACountry<-}\KeywordTok{interaction}\NormalTok{(df}\OperatorTok{$}\NormalTok{MPAA_rating,df}\OperatorTok{$}\NormalTok{Country)}
+\KeywordTok{tapply}\NormalTok{(df}\OperatorTok{$}\NormalTok{imdb.com_rating,MPAACountry,sd,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     G.Netherlands    PG.Netherlands PG-13.Netherlands     R.Netherlands 
+##         2.1124630         1.0200854         0.9734573         0.8730892 
+##             G.USA            PG.USA         PG-13.USA             R.USA 
+##         2.1124630         0.9977753         0.9716069         0.8756012
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(df}\OperatorTok{$}\NormalTok{imdb.com_rating,MPAACountry,mean,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     G.Netherlands    PG.Netherlands PG-13.Netherlands     R.Netherlands 
+##          5.933333          5.909091          6.411896          6.470707 
+##             G.USA            PG.USA         PG-13.USA             R.USA 
+##          5.933333          5.900000          6.407246          6.454976
+\end{verbatim}
+
+\hypertarget{simple-regression}{%
+\section{3. Simple regression}\label{simple-regression}}
+
+Perform a simple regression using the MPAA\_rating to explain opening
+revenues. Note that MPAA\_rating is treated as a factor by R. What does
+the intercept represent? Calculate the absolute mean difference between
+PG and PG-13 rated movies using the beta coefficients. Can you tell
+whether this difference is significant?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\KeywordTok{class}\NormalTok{(df}\OperatorTok{$}\NormalTok{Opening_revenues)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(df}\OperatorTok{$}\NormalTok{MPAA_rating)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OR2<-}\KeywordTok{as.character}\NormalTok{(df}\OperatorTok{$}\NormalTok{Opening_revenues)}
+\KeywordTok{summary}\NormalTok{(}\KeywordTok{lm}\NormalTok{(OR2}\OperatorTok{~}\NormalTok{df}\OperatorTok{$}\NormalTok{MPAA_rating,df))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = OR2 ~ df$MPAA_rating, data = df)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -18056954 -12850789  -8871258   4565804 189364184 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(>|t|)
+## (Intercept)          8933775    6338213   1.410    0.159
+## df$MPAA_ratingPG     4090199    6663458   0.614    0.539
+## df$MPAA_ratingPG-13  9140749    6427939   1.422    0.155
+## df$MPAA_ratingR      1273879    6454826   0.197    0.844
+## 
+## Residual standard error: 23720000 on 1011 degrees of freedom
+##   (138 observations deleted due to missingness)
+## Multiple R-squared:  0.0239, Adjusted R-squared:  0.02101 
+## F-statistic: 8.253 on 3 and 1011 DF,  p-value: 1.991e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{9140749-4090198} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5050551
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\StringTok{"test"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "test"
+\end{verbatim}
+
+\hypertarget{anova-vs-simple-regression}{%
+\section{4. ANOVA vs simple
+regression}\label{anova-vs-simple-regression}}
+
+Compare the result you obtained in exercise 4 with an ANOVA test on the
+original variable MPAA rating. To which mean all the means are compared
+in a standard ANOVA test? Report the \(F\)-value. Inspect the mean
+differences using a \texttt{TukeyHSD} test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{aov1 <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(df}\OperatorTok{$}\NormalTok{Opening_revenues }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{MPAA_rating)}
+\KeywordTok{summary}\NormalTok{(aov1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  Df    Sum Sq   Mean Sq F value   Pr(>F)    
+## df$MPAA_rating    3 1.392e+16 4.641e+15   8.253 1.99e-05 ***
+## Residuals      1011 5.686e+17 5.624e+14                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 138 observations deleted due to missingness
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TukeyHSD}\NormalTok{(aov1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = df$Opening_revenues ~ df$MPAA_rating)
+## 
+## $`df$MPAA_rating`
+##              diff         lwr      upr     p adj
+## PG-G      4090199 -13056938.2 21237335 0.9276958
+## PG-13-G   9140749  -7400325.0 25681823 0.4857961
+## R-G       1273879 -15336382.0 17884141 0.9972773
+## PG-13-PG  5050551   -914972.2 11016073 0.1298749
+## R-PG     -2816319  -8971082.7  3338444 0.6412286
+## R-PG-13  -7866870 -12045858.7 -3687881 0.0000087
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## F-value: 8.253}
+\end{Highlighting}
+\end{Shaded}
+
+What is the between variance and what is the within variance? Although
+you can read this from the ANOVA output, you can also calculate these
+numbers yourself. The formula for the between variance of groups j=
+(1,2\ldots k):
+
+\[between=\sum_{j=1}^kn_{j}\left(\overline{X}_{j}-\overline{X}\right)^2\]
+where \(\overline{X}\) is the overall mean. Usually one reports the mean
+square, where you divide by \(k-1\).
+
+Calculate the between variance yourself. Make sure you remove the
+missings before you start! Check with \texttt{aov} calculated above.
+Show your code below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# first use na.omit to delete all the missing values on opening revenues and MPAArating}
+\NormalTok{dff<-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df[,}\KeywordTok{c}\NormalTok{(}\StringTok{"Opening_revenues"}\NormalTok{, }\StringTok{"MPAA_rating"}\NormalTok{)])}
+\CommentTok{# then get the variables and save them in objects to call later}
+\NormalTok{y<-}\StringTok{ }\NormalTok{dff}\OperatorTok{$}\NormalTok{Opening_revenues}
+\NormalTok{x<-}\StringTok{ }\NormalTok{dff}\OperatorTok{$}\NormalTok{MPAA_rating}
+\NormalTok{groups <-}\StringTok{ }\KeywordTok{levels}\NormalTok{(}\KeywordTok{factor}\NormalTok{(dff}\OperatorTok{$}\NormalTok{MPAA_rating))}
+\KeywordTok{unique}\NormalTok{(groups)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "G"     "PG"    "PG-13" "R"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n1 <-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\StringTok{"G"}\NormalTok{])}
+\NormalTok{n2<-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\StringTok{"PG"}\NormalTok{])}
+\NormalTok{n3<-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\StringTok{"PG-13"}\NormalTok{])}
+\NormalTok{n4<-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\StringTok{"R"}\NormalTok{])}
+\ControlFlowTok{for}\NormalTok{ (group }\ControlFlowTok{in}\NormalTok{ groups) \{}
+\NormalTok{ nj <-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\NormalTok{group]) }
+\NormalTok{ E<-}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(y[x}\OperatorTok{==}\NormalTok{group])}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(y))}\OperatorTok{^}\DecValTok{2}
+\NormalTok{ between <-}\StringTok{ }\DecValTok{0}
+\NormalTok{ between <-}\StringTok{ }\NormalTok{between }\OperatorTok{+}\StringTok{ }\NormalTok{nj}\OperatorTok{*}\NormalTok{E}
+ 
+ \KeywordTok{print}\NormalTok{(between)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.129244e+14
+## [1] 2.390625e+14
+## [1] 6.757648e+15
+## [1] 6.514848e+15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a score of between variance of zero}
+\NormalTok{between}\OperatorTok{/}\NormalTok{(}\KeywordTok{length}\NormalTok{(groups)}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.171616e+15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# start for loop}
+\CommentTok{# loop over the groups}
+\CommentTok{# for each group you will calculate (1) the length which is nj, the group mean}
+\CommentTok{# fill in the formula, and add each run of the loop}
+\CommentTok{# the between variance of that group to the overall between variance}
+
+\CommentTok{# divide by number of groups - 1 to get mean square of between variance}
+
+\CommentTok{# check with aov}
+\KeywordTok{summary}\NormalTok{(aov1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  Df    Sum Sq   Mean Sq F value   Pr(>F)    
+## df$MPAA_rating    3 1.392e+16 4.641e+15   8.253 1.99e-05 ***
+## Residuals      1011 5.686e+17 5.624e+14                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 138 observations deleted due to missingness
+\end{verbatim}
+
+The formula for the within variance is as follows:
+
+\[within=\sum_{j=1}^k \sum_{i=1}^n\left(X_{ij}-\overline{X}_{j}\right)^2\]
+
+Calculate the within variance yourself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# same as before but now within the for loop over groups}
+\CommentTok{# you add the calculation over observations (i.e. movies)}
+\CommentTok{# substract the group mean from each observation, and sum these}
+\CommentTok{# add these across groups to get the within variance}
+\NormalTok{dff<-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df[,}\KeywordTok{c}\NormalTok{(}\StringTok{"Opening_revenues"}\NormalTok{, }\StringTok{"MPAA_rating"}\NormalTok{)])}
+\NormalTok{y<-}\StringTok{ }\NormalTok{dff}\OperatorTok{$}\NormalTok{Opening_revenues}
+\NormalTok{x<-}\StringTok{ }\NormalTok{dff}\OperatorTok{$}\NormalTok{MPAA_rating}
+\NormalTok{groups <-}\StringTok{ }\KeywordTok{levels}\NormalTok{(}\KeywordTok{factor}\NormalTok{(dff}\OperatorTok{$}\NormalTok{MPAA_rating))}
+
+\NormalTok{within <-}\StringTok{ }\DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (group }\ControlFlowTok{in}\NormalTok{ groups) \{}
+\NormalTok{  nj <-}\StringTok{ }\KeywordTok{length}\NormalTok{(y[x}\OperatorTok{==}\NormalTok{group])}
+\NormalTok{  w<-}\StringTok{ }\NormalTok{(y[x}\OperatorTok{==}\NormalTok{group]}\OperatorTok{-}\KeywordTok{mean}\NormalTok{(y[x}\OperatorTok{==}\NormalTok{group]))}\OperatorTok{^}\DecValTok{2}
+\NormalTok{  within <-}\StringTok{ }\NormalTok{within}\OperatorTok{+}\KeywordTok{sum}\NormalTok{(w)}
+\NormalTok{\}}
+\NormalTok{within}\OperatorTok{/}\KeywordTok{length}\NormalTok{(y)}\OperatorTok{-}\KeywordTok{length}\NormalTok{(groups)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.602047e+14
+\end{verbatim}
+
+\hypertarget{reference-category}{%
+\section{5. Reference category}\label{reference-category}}
+
+Re-estimate your regression under 2 by altering the reference category
+to the R rated movies. Use the \texttt{relevel} and report the
+\(F\)-value. How would you interpret the intercept now?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{lm5 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(df}\OperatorTok{$}\NormalTok{Opening_revenues }\OperatorTok{~}\StringTok{ }\KeywordTok{relevel}\NormalTok{(}\KeywordTok{factor}\NormalTok{(df}\OperatorTok{$}\NormalTok{MPAA_rating), }\StringTok{"R"}\NormalTok{))}
+\KeywordTok{summary}\NormalTok{(lm5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = df$Opening_revenues ~ relevel(factor(df$MPAA_rating), 
+##     "R"))
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -18056954 -12850789  -8871258   4565804 189364184 
+## 
+## Coefficients:
+##                                           Estimate Std. Error t value Pr(>|t|)
+## (Intercept)                               10207655    1221406   8.357  < 2e-16
+## relevel(factor(df$MPAA_rating), "R")G     -1273879    6454826  -0.197    0.844
+## relevel(factor(df$MPAA_rating), "R")PG     2816319    2391770   1.178    0.239
+## relevel(factor(df$MPAA_rating), "R")PG-13  7866870    1623975   4.844 1.47e-06
+##                                              
+## (Intercept)                               ***
+## relevel(factor(df$MPAA_rating), "R")G        
+## relevel(factor(df$MPAA_rating), "R")PG       
+## relevel(factor(df$MPAA_rating), "R")PG-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 23720000 on 1011 degrees of freedom
+##   (138 observations deleted due to missingness)
+## Multiple R-squared:  0.0239, Adjusted R-squared:  0.02101 
+## F-statistic: 8.253 on 3 and 1011 DF,  p-value: 1.991e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## F-value: 8.253}
+\end{Highlighting}
+\end{Shaded}
+
+Why did the beta coefficient of PG-13 change wrt 2?
+
+\hypertarget{multiple-regression}{%
+\section{6. Multiple regression}\label{multiple-regression}}
+
+Regress IMDB rating and country on opening revenues. Before you start,
+create a complete dataframe (with only the three variables needed) using
+\texttt{na.omit}, and keep this in a separate object. \textbf{This step
+requires standardizing. To make sure R performs standardization on the
+complete dataset, we will first create a new dataframe of complete
+cases.}. Perform the analysis on this new complete dataframe. Save the
+\texttt{lm} object in R. Report standardized coefficients. Use
+\texttt{scale} on all \emph{numeric} variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{df6 <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df[,}\KeywordTok{c}\NormalTok{(}\StringTok{"imdb.com_rating"}\NormalTok{, }\StringTok{"Country"}\NormalTok{, }\StringTok{"Opening_revenues"}\NormalTok{)])}
+\NormalTok{lm6 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}\KeywordTok{scale}\NormalTok{(df6}\OperatorTok{$}\NormalTok{Opening_revenues) }\OperatorTok{~}\StringTok{ }\KeywordTok{scale}\NormalTok{(df6}\OperatorTok{$}\NormalTok{imdb.com_rating) }\OperatorTok{+}\StringTok{ }\NormalTok{df6}\OperatorTok{$}\NormalTok{Country)}
+\KeywordTok{summary}\NormalTok{(lm6)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = scale(df6$Opening_revenues) ~ scale(df6$imdb.com_rating) + 
+##     df6$Country)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.3072 -0.4028 -0.0594  0.0839  7.4556 
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                -0.58513    0.04055 -14.429  < 2e-16 ***
+## scale(df6$imdb.com_rating)  0.12007    0.02662   4.511  7.2e-06 ***
+## df6$CountryUSA              1.02720    0.05374  19.115  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8552 on 1031 degrees of freedom
+## Multiple R-squared:   0.27,  Adjusted R-squared:  0.2686 
+## F-statistic: 190.6 on 2 and 1031 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Compare with the predicted values of the regression. Use
+\texttt{predict} to get the predicted scores from the \texttt{lm} object
+in R. Explore the mean predicted value for each country using
+\texttt{tapply}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\KeywordTok{tapply}\NormalTok{(}\KeywordTok{predict}\NormalTok{(lm6), df6}\OperatorTok{$}\NormalTok{Country, mean, }\DataTypeTok{na.rm =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Netherlands         USA 
+##  -0.5813188   0.4391967
+\end{verbatim}
+
+Inspect the regression assumptions of the multiple regression. Determine
+whether the regression assumptions are violated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{# here I make sure to plot 4 graphs next and below to another}
+\CommentTok{# write your R code here}
+\KeywordTok{plot}\NormalTok{(lm6)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{BRM1-week4_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## null device 
+##           1
+\end{verbatim}
+
+As you can observe, the residuals are not normally distributed, and
+violates the assumption of normality. In the following exercises a
+transformation is used in an attempt to make the residuals more normally
+distributed.
+
+\hypertarget{log-transformation}{%
+\section{7. Log transformation}\label{log-transformation}}
+
+Rerun the model you've estimated in exercise 6 but now use a logarithmic
+scale for the dependent variable with \texttt{log()} and do not
+standardize the numeric variable(s). Calculate the predicted value for a
+movie in country 1 for an IMDB-rating of 8.5. Make sure predicted value
+is measured at the original scale using \texttt{exp()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{lm7 <-}\StringTok{ }\NormalTok{(}\KeywordTok{lm}\NormalTok{(}\KeywordTok{log}\NormalTok{(df}\OperatorTok{$}\NormalTok{Opening_revenues) }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{imdb.com_rating }\OperatorTok{+}\StringTok{ }\KeywordTok{factor}\NormalTok{(df}\OperatorTok{$}\NormalTok{Country)))}
+\NormalTok{lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\FloatTok{8.5} \OperatorTok{+}\StringTok{ }\NormalTok{lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept) 
+##    12.62435
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{exp}\NormalTok{(lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\FloatTok{8.5} \OperatorTok{+}\StringTok{ }\NormalTok{lm7}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept) 
+##    303868.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log(df$Opening_revenues) ~ df$imdb.com_rating + 
+##     factor(df$Country))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1162 -0.5153  0.0794  0.6712  2.6016 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           12.36396    0.23304  53.054   <2e-16 ***
+## df$imdb.com_rating     0.03063    0.03542   0.865    0.387    
+## factor(df$Country)USA  3.93663    0.07104  55.416   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.131 on 1031 degrees of freedom
+##   (119 observations deleted due to missingness)
+## Multiple R-squared:  0.7487, Adjusted R-squared:  0.7482 
+## F-statistic:  1536 on 2 and 1031 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\hypertarget{predict-with-and-without-transformation}{%
+\section{8. Predict with and without
+transformation}\label{predict-with-and-without-transformation}}
+
+Rerun the unstandardized regression of exercise 7 but now without the
+log transformation. Calculate the predicted value for a movie in country
+1 for an IMDB-rating of 8.5. Compare with the predicted value based on
+model estimated in exercise 7. Can you explain the difference?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# write your R code here}
+\NormalTok{lm8 <-}\StringTok{ }\NormalTok{(}\KeywordTok{lm}\NormalTok{((df}\OperatorTok{$}\NormalTok{Opening_revenues) }\OperatorTok{~}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{imdb.com_rating }\OperatorTok{+}\StringTok{ }\KeywordTok{factor}\NormalTok{(df}\OperatorTok{$}\NormalTok{Country)))}
+\NormalTok{lm8}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\NormalTok{lm8}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{]}\OperatorTok{*}\FloatTok{8.5}\OperatorTok{+}\NormalTok{lm8}\OperatorTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{]}\OperatorTok{*}\DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept) 
+##     6486475
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(lm8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = (df$Opening_revenues) ~ df$imdb.com_rating + factor(df$Country))
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -31144266  -9596378  -1415127   1998753 177630626 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           -17988273    4200152  -4.283 2.02e-05 ***
+## df$imdb.com_rating      2879382     638347   4.511 7.20e-06 ***
+## factor(df$Country)USA  24473360    1280318  19.115  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 20380000 on 1031 degrees of freedom
+##   (119 observations deleted due to missingness)
+## Multiple R-squared:   0.27,  Adjusted R-squared:  0.2686 
+## F-statistic: 190.6 on 2 and 1031 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\end{document}
