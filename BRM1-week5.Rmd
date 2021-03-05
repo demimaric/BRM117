@@ -1,0 +1,83 @@
+---
+title: 'BRM1_IBA_2021: Week 5'
+author: "Demi Maric,  Ashley Verdies, Merle, Team 117"
+date: "5/3/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Before you start, install your working environment 
+- check your working directory
+- setwd() to change working directory
+- remove all objects, start with an empty environment
+
+```{r}
+getwd()
+rm(list=ls()) 
+```
+
+Use same dataset as last week:
+```{r}
+# write your R code here
+df<-read.csv("Netherlands_USA.csv", sep=",")
+```
+
+# Assignment week 5 
+Make sure that the estimates will be correct and include both with and without missings when making the R-rated movie dummy (see week 4).
+
+# 1. Multiple regression per country
+Estimate a regression model per country using imdb-rating and the R-rated movie dummy as independent variables to explain log transformed opening revenues. Report the unstandardized beta coefficient of imdb-rating and the R-rated movie dummy for country 1.
+```{r}
+# write your R code here
+df$MPAA_rating[df$MPAA_rating==" "]<-NA
+df[df$MPAA_rating=="R" & !is.na(df$MPAA_rating),"R_rated"] <- 1
+df[df$MPAA_rating!="R" & !is.na(df$MPAA_rating),"R_rated"] <- 0
+
+lm(log(Opening_revenues)~imdb.com_rating + R_rated, data = df[df$Country=="USA",])
+
+
+```
+
+# 2. Moderated regression
+Estimate the same regression model as in 1) on the whole sample, but with country as moderator for the effect of imdb-rating and the R-rated movie dummy on the log transformed opening revenues. You need to add two moderators to the model using * (as shown in lecture). Report the unstandardized beta coefficient of imdb-rating and the R-rated movie dummy and the interaction effects.
+```{r}
+# write your R code here
+
+df$MPAA_rating[df$MPAA_rating == " "] <- NA
+df$dummy[df$MPAA_rating == "R"] <- 1
+df$dummy[df$MPAA_rating != "R" & !is.na(df$MPAA_rating)] <- 0
+
+lm3<- lm(log(df$Opening_revenues) ~ df$Country*df$imdb.com_rating + df$dummy*df$Country, df)
+summary(lm3)
+```
+
+# 3. Prediction
+Predict log revenue for an R-rated movie with a imdb-rating of 6.6 per country using the estimates from 2). Keep in mind country is treated as a dummy variable.
+```{r}
+# write your R code here
+##country 1
+lm3$coeff[1]+lm3$coeff[2]*0+lm3$coeff[3]*6.6+lm3$coeff[4]*1+lm3$coeff[5]*0*6.6 + lm3$coeff[6]*0*1
+
+## country 2
+lm3$coeff[1]+lm3$coeff[2]*1+lm3$coeff[3]*6.6+lm3$coeff[4]*1+lm3$coeff[5]*1*6.6 + lm3$coeff[6]*1*1
+
+```
+
+# 4. Mean centering
+Mean-center the non-dummy variables included in the regression analysis (not the dependent variable!) and re-estimate the model estimated in step 2 on the whole sample. *Note*. Mean centering is across whole sample, not country-specific. Report the unstandardized coefficients for country 1. Use `relevel` and `factor` commands.
+```{r}
+# write your R code here
+```
+
+# 5. Interpretation
+How would you interpret the intercept of model you've estimated under 4?
+
+# 6. Prediction original scale
+What is the predicted value of the opening revenues for an R-rated movie with an average imdb-rating? Use the coefficients of the model you've estimated in step 4. Report the predicted value of opening revenues at the **original scale** per country. 
+```{r}
+# write your R code here
+```
+
